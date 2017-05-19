@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:task="http://www.springframework.org/schema/task"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd  
+        http://www.springframework.org/schema/task  
+        http://www.springframework.org/schema/task/spring-task.xsd">  
+  
+   <!--  <task:annotation-driven executor="taskExecutor" scheduler="taskScheduler"/>  
+    <task:executor id="taskExecutor" pool-size="5"/>  
+    <task:scheduler id="taskScheduler" pool-size="10" />    --> 
+    <!-- 任务启动器 -->
+    <task:annotation-driven/>
+    <!-- 定时执行的bean -->
+    <bean id="taskDemoQueue" class="com.wang.task.demo.TaskDemo" />      
+	
+
+	<!-- 注册执行定时任务的方法及执行时间 -->
+	<!-- cron表达式：* * * * * *（共6位，使用空格隔开，具体如下） 
+	cron表达式：*(秒0-59) *(分钟0-59) *(小时0-23) *(日期1-31) *(月份1-12或是JAN-DEC) *(星期1-7或是SUN-SAT)  -->  
+	<task:scheduled-tasks>
+		<!-- 正式环境定位每隔1秒执行一次 --> 
+		<!-- 开发调试阶段暂定每隔30秒执行一次 -->
+	    <task:scheduled ref="taskRewardQueue" method="RewardsEventProcess" cron="*/1 * * * * ?" />	    
+	</task:scheduled-tasks> 
+
+	<!-- 线程池任务执行器 -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	  <!-- 核心线程数 -->	 
+	  <property name="corePoolSize" value="${task.core_pool_size}" />
+	  <!-- 最大线程数 -->  
+	  <property name="maxPoolSize" value="${task.max_pool_size}" />
+	  <!-- 队列最大长度 -->
+	  <property name="queueCapacity" value="${task.queue_capacity}" />
+	  <!-- 线程池维护线程所允许的空闲时间，默认为60s -->
+	  <property name="keepAliveSeconds" value="${task.keep_alive_seconds}" />
+	</bean> 
+</beans>  

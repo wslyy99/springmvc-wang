@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="off" monitorInterval="300"> 
+    <properties>
+        <!-- File base path -->
+        <property name="LOG_HOME">/wang-logs</property>
+        <!-- App server name -->
+        <property name="SERVER_NAME">wang-web</property>
+        <!-- Backup file path -->
+        <property name="ERROR_FILE">wang-web-error</property>
+    </properties>
+ 
+    <appenders>
+        <!-- Console -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread][%logger{36}:%line] - %msg%n"/>
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %C{5} (%F:%L) - %msg%n"/>-->
+        </Console>
+        <!-- RollingFile -->
+        <RollingRandomAccessFile name="RollingFile"
+                                 fileName="${LOG_HOME}/${SERVER_NAME}.log"
+                                 filePattern="${LOG_HOME}/${SERVER_NAME}.%d{yyyy-MM-dd}-%i.log.gz">
+                                 
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread][%logger{36}:%line] - %msg%n"/>
+            <Policies>
+                <!--<TimeBasedTriggeringPolicy modulate="true" interval="24"/>-->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="200 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingRandomAccessFile>
+         <!-- ErrorFile -->
+         <RollingRandomAccessFile name="errorLog" 
+                                 fileName="${LOG_HOME}/${ERROR_FILE}.log"  
+                                 filePattern="${LOG_HOME}/${SERVER_NAME}.%d{yyyy-MM-dd}-%i.log.gz" append="true">  
+            <Filters>  
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>  
+            </Filters>  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread][%logger{36}:%line] - %msg%n"/>  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>  
+            </Policies>  
+            <DefaultRolloverStrategy max="30"/>  
+        </RollingRandomAccessFile>  
+        
+      
+    </appenders>
+ 
+    <loggers>
+         <!-- 3rdparty Loggers -->  
+         <logger name="org.springframework.core" level="info">  
+         </logger>  
+         <logger name="org.springframework.beans" level="info">  
+         </logger>  
+         <logger name="org.springframework.context" level="info">  
+         </logger>  
+         <logger name="org.springframework.web" level="info">  
+         </logger>  
+ 
+        <!-- 将业务dao接口填写进去,并用控制台输出即可 -->  
+       <!--  <logger name="com.wang.dao.*" level="DEBUG" additivity="false">  
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFile"/>  
+        </logger>   -->
+        
+        <!-- sql 以及耗费的执行时间 -->
+		<logger name="jdbc.sqltiming" level="INFO" additivity="false"></logger>
+		<!-- 执行之后的返回结果 -->
+		<logger name="jdbc.resultsettable" level="INFO"></logger>
+		<!-- 只有sql -->
+		<logger name="jdbc.sqlonly" level="INFO"></logger>
+		<logger name="jdbc.audit" level="OFF"></logger>
+		<logger name="jdbc.resultset" level="OFF"></logger>
+		<!-- 能看到数据库的连接数 -->
+		<logger name="jdbc.connection" level="OFF"></logger>
+ 
+        <!-- Root Logger -->
+        <root level="info"  includeLocation="true">
+            <AppenderRef ref="errorLog"/>
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFile"/>
+        </root>
+    </loggers>
+</configuration>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.wang</groupId>
+  <artifactId>project-wang</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+   <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<springframework.version>4.3.6.RELEASE</springframework.version>
+		<org.mybatis.mybatis>3.3.0</org.mybatis.mybatis>
+		<org.mybatis.mybatis-spring>1.2.2</org.mybatis.mybatis-spring>
+		<com.alibaba.druid>1.0.29</com.alibaba.druid>
+		<mysql-connector-java>5.1.21</mysql-connector-java>
+		<mybatis-generator-core>1.3.2</mybatis-generator-core>
+		<fast.json>1.2.5</fast.json>
+		<redis.clients.jedis>2.6.0</redis.clients.jedis>
+		<javax.servlet.javax.servlet-api>3.0.1</javax.servlet.javax.servlet-api>
+		<javax.servlet.jsp.jsp-api>2.2</javax.servlet.jsp.jsp-api>
+		<jstl>1.2</jstl>
+		<junit.version>4.7</junit.version>
+		<org.apache.logging.log4j2.version>2.7</org.apache.logging.log4j2.version>
+		<validation-api.version>1.1.0.Final</validation-api.version>
+		<org.aspectj.aspectjweaver>1.6.2</org.aspectj.aspectjweaver>
+		<commons-fileupload.commons-fileupload>1.3</commons-fileupload.commons-fileupload>
+		<slf4j.version>1.7.20</slf4j.version>
+		<disruptor.version>3.2.0</disruptor.version>
+		<log42jdbc.version>1.16</log42jdbc.version>
+		<racketmq.version>3.2.6</racketmq.version>
+		<dom4j.version>2.0.0</dom4j.version>
+		<version.jackson>2.8.5</version.jackson>
+		<swagger.springmvc.version>2.6.1</swagger.springmvc.version>
+  </properties>
+  
+  <dependencyManagement>
+	 <dependencies>
+	 <!-- mybatis begin-->
+           <dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${org.mybatis.mybatis}</version>
+			</dependency>
+			<dependency>
+		    	<groupId>org.mybatis.generator</groupId>
+		    	<artifactId>mybatis-generator-core</artifactId>
+		    	<version>${mybatis-generator-core}</version>
+			 </dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${org.mybatis.mybatis-spring}</version>
+			</dependency>
+		<!-- mybatis end-->
+		
+		<!-- mysql-->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector-java}</version>
+			</dependency>
+			
+			<!-- druid连接池 -->
+		    <dependency>
+			     <groupId>com.alibaba</groupId>
+			     <artifactId>druid</artifactId>
+			     <version>${com.alibaba.druid}</version>
+			</dependency>
+			
+			<!-- fastjson -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fast.json}</version>
+        </dependency>
+        
+        <!-- spring begin-->
+          <dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-tx</artifactId>
+			    <version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+		        <groupId>org.springframework</groupId>
+		        <artifactId>spring-aop</artifactId>
+		        <version>${springframework.version}</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.springframework</groupId>
+		        <artifactId>spring-context-support</artifactId>
+		        <version>${springframework.version}</version>
+		    </dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-jdbc</artifactId>
+			    <version>${springframework.version}</version>
+			</dependency>
+        
+        <!-- spring end -->
+        
+        <!-- redis -->
+        <dependency>  
+		        <groupId>redis.clients</groupId>  
+		        <artifactId>jedis</artifactId>  
+		        <version>${redis.clients.jedis}</version>  
+		 </dependency>
+		    
+		<!-- servlet -->	
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet.javax.servlet-api}</version>
+				<scope>provided</scope> <!--打包时不包含-->
+			</dependency>
+			<dependency>
+	            <groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${javax.servlet.jsp.jsp-api}</version>
+	            <scope>provided</scope>   <!--这里说明jsp-api.jar文件将由应用服务器提供，打包时不�????????????要包�????????????-->
+	        </dependency>
+	        
+	        <!-- jstl jsp页面标签 -->
+	        <dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl}</version>
+			</dependency>
+			
+			<!-- junit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<!-- log4j2 begin-->
+			  <!-- slf4j核心包-->  
+	          <dependency>  
+	              <groupId>org.slf4j</groupId>  
+	              <artifactId>slf4j-api</artifactId>  
+	              <version>${slf4j.version}</version>  
+	          </dependency>
+	          <!-- adapter log4j -->
+		        <dependency>
+		            <groupId>org.slf4j</groupId>
+		            <artifactId>log4j-over-slf4j</artifactId>
+		            <version>${slf4j.version}</version>
+		        </dependency>
+	          <!-- adapter commons-logging -->
+	          <dependency>  
+	              <groupId>org.slf4j</groupId>  
+	              <artifactId>jcl-over-slf4j</artifactId>  
+	             <version>${slf4j.version}</version>  
+	             <scope>runtime</scope>  
+	        </dependency>
+	        <!-- log4jdbc监控jdbc层 -->
+			<dependency>
+			    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+			    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			    <version>${log42jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-core</artifactId>
+			    <version>${org.apache.logging.log4j2.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-api</artifactId>
+			    <version>${org.apache.logging.log4j2.version}</version>
+			</dependency>
+			<!--用于与slf4j保持桥接-->  
+	       <dependency>            
+	          <groupId>org.apache.logging.log4j</groupId>          
+	               <artifactId>log4j-slf4j-impl</artifactId>  
+	           <version>${org.apache.logging.log4j2.version}</version>  
+	        </dependency>
+	        <!-- 桥接：告诉commons logging使用Log4j2 -->
+	        <dependency> 
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-jcl</artifactId>
+			    <version>${org.apache.logging.log4j2.version}</version>
+			</dependency>
+            <!--web工程需要包含log4j-web，非web工程不需要--> 
+			<dependency>
+				     <groupId>org.apache.logging.log4j</groupId>
+				    <artifactId>log4j-web</artifactId>
+				    <version>${org.apache.logging.log4j2.version}</version>
+			</dependency>
+			<!--需要使用log4j2的AsyncLogger需要包含disruptor-->  
+	        <dependency>
+	            <groupId>com.lmax</groupId>
+	            <artifactId>disruptor</artifactId>
+	            <version>${disruptor.version}</version>
+	        </dependency>  
+			<!-- log4j2 end-->
+			
+			<dependency>
+			    <groupId>org.slf4j</groupId>
+			    <artifactId>slf4j-nop</artifactId>
+			    <version>${slf4j.version}</version>
+			</dependency>
+			
+			 <!-- <dependency>
+			    <groupId>javax.validation</groupId>
+			    <artifactId>validation-api</artifactId>
+			    <version>${validation-api.version}</version>
+			</dependency> -->
+			
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${org.aspectj.aspectjweaver}</version>
+			</dependency>
+			
+			
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons-fileupload.commons-fileupload}</version>
+			</dependency>
+			
+			<!-- rocketmq -->
+			<dependency>
+	            <groupId>com.alibaba.rocketmq</groupId>
+	            <artifactId>rocketmq-client</artifactId>
+	            <version>${racketmq.version}</version>
+        </dependency>
+        
+        
+        <!-- swagger begin -->
+        <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.springmvc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.springmvc.version}</version>
+            </dependency>
+            
+             <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${version.jackson}</version>
+            </dependency>
+             <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${version.jackson}</version>
+            </dependency>
+           
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${version.jackson}</version>
+            </dependency> 
+        <!-- swagger end -->
+			
+      </dependencies>
+  </dependencyManagement>
+  
+  <build/>
+  <modules>
+    <module>wang-web</module>
+    <module>wang-service</module>
+    <module>wang-facade</module>
+    <module>wang-persist</module>
+    <module>wang-domain</module>
+    <module>wang-config</module>
+    <module>wang-gengerator</module>
+    <module>wang-notify</module>
+    <module>wang-task</module>
+  </modules>
+</project>

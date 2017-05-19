@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--table表明参数加载对应的的库表名称，para_name表明参数在系统中的识别名称，以此名称作为redis的key-->
+<Parameter_management>
+	<!-- 素材别名包定义 -->
+	<para table="RULE_MTA_PKG" para_name="RuleMtaPkg">
+		<!--hashmap中的key-->
+	  <key_column>
+		  <key_name>MTA_PKG_CODE</key_name>
+	  </key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>MTA_PKG_CODE</column_name>
+	  	 <column_alias>mTA_PKG_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>MTA_PKG_DESC</column_name>
+	  	 <column_alias>mTA_PKG_DESC</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>MTA_PKG_TYPE</column_name>
+	  	 <column_alias>mTA_PKG_TYPE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>OBJECT_TYPE</column_name>
+	  	 <column_alias>oBJECT_TYPE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>EFF_STATE</column_name>
+	  	 <column_alias>eFF_STATE</column_alias>
+	  	 <data_type>long</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>STAFF_ID</column_name>
+	  	 <column_alias>sTAFF_ID</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <!--参数加载条件，value用于做匹配，同一节点value为"OR",多个节点为"AND"判断-->
+	  <condition_column>
+	  	<column_name>EFF_STATE</column_name >
+	  	<data_type>long</data_type>
+	  	<value>1</value>
+	  </condition_column>
+	</para>
+	
+	<!-- 别名包详情管理 -->
+	<para table="RULE_MTA_PKG_DESC" para_name="RuleMtaPkgDesc">
+		<!--hashmap中的key-->
+	  <key_column>MTA_PKG_CODE</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>MTA_PKG_CODE</column_name>
+	  	 <column_alias>mTA_PKG_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>MATERIAL_ALIAS</column_name>
+	  	 <column_alias>mATERIAL_ALIAS</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>	 
+	  <value_column>
+	  	 <column_name>EFF_STATE</column_name>
+	  	 <column_alias>eFF_STATE</column_alias>
+	  	 <data_type>long</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>STAFF_ID</column_name>
+	  	 <column_alias>sTAFF_ID</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <!--参数加载条件，value用于做匹配，同一节点value为"OR",多个节点为"AND"判断-->
+	  <condition_column>
+	  	<column_name>EFF_STATE</column_name >
+	  	<data_type>long</data_type>
+	  	<value>1</value>
+	  </condition_column>
+	</para>
+	
+	<!-- 素材别名定义 -->
+	<para table="CODE_MATERIAL_ALIAS" para_name="CodeMaterialAlias">
+		<!--hashmap中的key-->
+	  <key_column>MATERIAL_ALIAS</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>MATERIAL_ALIAS</column_name>
+	  	  <column_alias>mATERIAL_ALIAS</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>ALIAS_DESC</column_name>
+	  	 <column_alias>aLIAS_DESC</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>ALIAS_TYPE</column_name>
+	  	 <column_alias>aLIAS_TYPE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>MATERIAL_TYPE</column_name>
+	  	 <column_alias>mTERIAL_TYPE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	    <value_column>
+	  	 <column_name>EFF_STATE</column_name>
+	  	 <column_alias>eFF_STATE</column_alias>
+	  	 <data_type>long</data_type>
+	  </value_column>
+	  
+	  <value_column>
+	  	 <column_name>STAFF_ID</column_name>
+	  	 <column_alias>sTAFF_ID</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <!--参数加载条件，value用于做匹配，同一节点value为"OR",多个节点为"AND"判断-->
+	  <condition_column>
+	  	<column_name>EFF_STATE</column_name >
+	  	<data_type>long</data_type>
+	  	<value>1</value>
+	  </condition_column>
+	</para>
+	
+	<!-- 业务对象与素材别名管理 -->
+	<para table="RULE_OBJECT_MTA_MGR" para_name="RuleObjectMtaMgr">
+		<!--hashmap中的key-->
+	  <key_column>OBJECT_TYPE</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>MATERIAL_ALIAS</column_name>
+	  	  <column_alias>mATERIAL_ALIAS</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>OPTION_TYPE</column_name>
+	  	 <column_alias>oPTION_TYPE</column_alias>
+	  	 <data_type>long</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>EFF_STATE</column_name>
+	  	 <column_alias>eFF_STATE</column_alias>
+	  	 <data_type>long</data_type>
+	  </value_column>
+	   
+	  <value_column>
+	  	 <column_name>STAFF_ID</column_name>
+	  	 <column_alias>sTAFF_ID</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <!--参数加载条件，value用于做匹配，同一节点value为"OR",多个节点为"AND"判断-->
+	  <condition_column>
+	  	<column_name>EFF_STATE</column_name >
+	  	<data_type>long</data_type>
+	  	<value>1</value>
+	  </condition_column>
+	</para>
+	
+	<!-- 国标地区编号参数和三方地区编号转换 -->
+	<para table="RULE_AREA_MAPPING" para_name="RuleAreaMapping">
+		<!--hashmap中的key-->
+	  <key_column>EXTERNAL_SYS_TYPE_EXTERNAL_CODE</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>EXTERNAL_SYS_TYPE</column_name>
+	  	  <column_alias>eXTERNAL_SYS_TYPE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>EXTERNAL_CODE</column_name>
+	  	 <column_alias>eXTERNAL_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>AREA_CODE</column_name>
+	  	 <column_alias>aREA_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <!--参数加载条件，value用于做匹配，同一节点value为"OR",多个节点为"AND"判断-->
+	  <condition_column>
+	  	<column_name>EXTERNAL_SYS_TYPE</column_name>
+	  	<data_type>string</data_type>
+	  	<value>100</value>
+	  </condition_column>
+   </para>
+   
+   <!-- 奖励活动参考信息 -->
+	<para table="RULE_INCENTIVE_REF_INFO" para_name="RuleIncentiveRefInfo">
+		<!--hashmap中的key-->
+	  <key_column>TRADE_TYPE_CODE_NODE_KEY_WORD</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>TRADE_TYPE_CODE</column_name>
+	  	  <column_alias>tRADE_TYPE_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>NODE_KEY_WORD</column_name>
+	  	  <column_alias>nODE_KEY_WORD</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>NODE_KEY_WORD_DESC</column_name>
+	  	 <column_alias>nODE_KEY_WORD_DESC</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>SOURCE_DATE_TAG</column_name>
+	  	 <column_alias>sOURCE_DATE_TAG</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>EFF_STATE</column_name>
+	  	 <column_alias>eFF_STATE</column_alias>
+	  	 <data_type>decimal</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>CREATE_DATE</column_name>
+	  	 <column_alias>cREATE_DATE</column_alias>
+	  	 <data_type>datetime</data_type>
+	  </value_column>
+	</para>
+   
+   <!-- 任务奖励活动决策树 -->
+	<para table="RULE_INCENTIVE_POLICY_TREE" para_name="RuleIncentivePolicyTree">
+		<!--hashmap中的key-->
+	  <key_column>NODE_ID</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>NODE_ID</column_name>
+	  	  <column_alias>nODE_ID</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>TRADE_TYPE_CODE</column_name>
+	  	  <column_alias>tRADE_TYPE_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>NODE_KEY_WORD</column_name>
+	  	 <column_alias>nODE_KEY_WORD</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>COMPARE_MODE</column_name>
+	  	 <column_alias>cOMPARE_MODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>COMPARE_VALUE_TYPE</column_name>
+	  	 <column_alias>cOMPARE_VALUE_TYPE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>COMPARE_VALUE_SET</column_name>
+	  	 <column_alias>cOMPARE_VALUE_SET</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>PARENT_NODE_ID</column_name>
+	  	 <column_alias>pARENT_NODE_ID</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	   <value_column>
+	  	 <column_name>NODE_PRIORITY</column_name>
+	  	 <column_alias>nODE_PRIORITY</column_alias>
+	  	 <data_type>decimal</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>INCENTIVE_EVENT_CODE</column_name>
+	  	 <column_alias>iNCENTIVE_EVENT_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <order_column>
+	  	 <order_name>PARENT_NODE_ID ASC,NODE_PRIORITY DESC</order_name>	  
+      </order_column>
+   </para>
+   <!-- 奖励活动互斥管理 -->
+	<para table="RULE_INCENTIVE_EVENT_MUTEX" para_name="RuleIncentiveEventMutex">
+		<!--hashmap中的key-->
+	  <key_column>GROUP_INCENTIVE_ID_INCENTIVE_EVENT_CODE</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>GROUP_INCENTIVE_ID</column_name>
+	  	  <column_alias>gROUP_INCENTIVE_ID</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>INCENTIVE_EVENT_CODE</column_name>
+	  	  <column_alias>iNCENTIVE_EVENT_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>TRADE_TYPE_CODE</column_name>
+	  	 <column_alias>tRADE_TYPE_CODE</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>INCENTIVE_PRIORITY</column_name>
+	  	 <column_alias>iNCENTIVE_PRIORITY</column_alias>
+	  	 <data_type>decimal</data_type>
+	  </value_column>
+   </para>
+   
+   
+   <!-- 资源账本类型定义表 -->
+	<para table="CODE_BALANCE_TYPE" para_name="CodeBalanceType">
+		<!--hashmap中的key-->
+	  <key_column>BALANCE_TYPE</key_column>
+	  <!--hashmap中的value-->
+	  <value_column>
+	  	 <column_name>BALANCE_TYPE</column_name>
+	  	  <column_alias>balanceType</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>RESOURCE_TYPE_CODE</column_name>
+	  	 <column_alias>resourceTypeCode</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>BALANCE_TYPE_NAME</column_name>
+	  	 <column_alias>balanceTypeName</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>BALANCE_TYPE_DESC</column_name>
+	  	 <column_alias>balanceTypeDesc</column_alias>
+	  	 <data_type>string</data_type>
+	  </value_column>
+	  <value_column>
+	  	 <column_name>INST_TAG</column_name>
+	  	 <column_alias>instTag</column_alias>
+	  	 <data_type>long</data_type>
+	  </value_column>
+   </para>
+   <!-- 城市信息 -->
+   <para table="CODE_AREA" para_name="CodeAreaDto">
+   		<key_column>AREA_CODE</key_column>
+   		<value_column>
+   			<column_name>AREA_CODE</column_name>
+   			<column_alias>aREA_CODE</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>AREA_NAME</column_name>
+   			<column_alias>aREA_NAME</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>AREA_LEVEL</column_name>
+   			<column_alias>aREA_LEVEL</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>UPPER_AREA_CODE</column_name>
+   			<column_alias>uPPER_AREA_CODE</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>OPEN_TAG</column_name>
+   			<column_alias>oPEN_TAG</column_alias>
+   		</value_column>
+   		<condition_column>
+	  	<column_name>OPEN_TAG</column_name>
+	  	<data_type>long</data_type>
+	  	<value>1</value>
+	  </condition_column>
+   </para>
+   
+   <!-- 系统信息() -->
+    <para table="RULE_SYSTEM_PARAMETER" para_name="SystemCacheDto">
+   		<key_column>DOMAIN_CODE</key_column>
+   		<value_column>
+   			<column_name>DOMAIN_CODE</column_name>
+   			<column_alias>domainCode</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NAME</column_name>
+   			<column_alias>paraName</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PRAR_DESC</column_name>
+   			<column_alias>prarDesc</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR1</column_name>
+   			<column_alias>paraChar1</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR2</column_name>
+   			<column_alias>paraChar2</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR3</column_name>
+   			<column_alias>paraChar3</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR4</column_name>
+   			<column_alias>paraChar4</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM1</column_name>
+   			<column_alias>paraNum1</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM2</column_name>
+   			<column_alias>paraNum2</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM3</column_name>
+   			<column_alias>paraNum3</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM4</column_name>
+   			<column_alias>paraNum4</column_alias>
+   		</value_column>
+   		 <condition_column>
+	  	<column_name>DOMAIN_CODE</column_name >
+		  	<data_type>long</data_type>
+		  	<value>3000</value>
+	 	 </condition_column>
+   </para>
+   
+   <!-- 系统信息(app版本信息) -->
+    <para table="RULE_SYSTEM_PARAMETER" para_name="SystemCacheEditionDto">
+   		<key_column>DOMAIN_CODE</key_column>
+   		<value_column>
+   			<column_name>DOMAIN_CODE</column_name>
+   			<column_alias>domainCode</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NAME</column_name>
+   			<column_alias>paraName</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PRAR_DESC</column_name>
+   			<column_alias>prarDesc</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR1</column_name>
+   			<column_alias>paraChar1</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR2</column_name>
+   			<column_alias>paraChar2</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR3</column_name>
+   			<column_alias>paraChar3</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_CHAR4</column_name>
+   			<column_alias>paraChar4</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM1</column_name>
+   			<column_alias>paraNum1</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM2</column_name>
+   			<column_alias>paraNum2</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM3</column_name>
+   			<column_alias>paraNum3</column_alias>
+   		</value_column>
+   		<value_column>
+   			<column_name>PARA_NUM4</column_name>
+   			<column_alias>paraNum4</column_alias>
+   		</value_column>
+   		 <condition_column>
+	  	<column_name>DOMAIN_CODE</column_name >
+		  	<data_type>long</data_type>
+		  	<value>1000</value>
+	 	 </condition_column>
+   </para>
+   
+</Parameter_management>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+		
+<bean id="propertyForDubboService" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+     <!-- <property name="order" value="2" /> 加载顺序，配置多个bean加载配置文件时使用-->
+     <property name="ignoreUnresolvablePlaceholders" value="true" /><!-- 忽略不可解析的 Placeholder -->
+     <property name="locations">
+       <list>
+         <value>classpath:jdbc.properties</value>   
+         <value>classpath:conf-service.properties</value>      
+       </list>
+     </property>
+</bean>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${jdbc_url}" />
+		<property name="username" value="${jdbc_username}" />
+		<!-- <property name="password" value="alexgaoyh" /> -->
+		<!--  java -cp druid-0.2.23.jar com.alibaba.druid.filter.config.ConfigTools you_password  -->
+		<!-- <property name="password" value="bNVOqb7WKLX5Bjnw+LMv92taj25KOxDimXxILPQjw42wgv+1lHzOH8kr97xDwWdhpY67QuYCS7sWN4W46YbkFA==" /> -->
+		<property name="password" value="${jdbc_password}" />
+
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${druid_pool_initialSize}" />
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="${druid_pool_maxActive}" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${druid_pool_minIdle}" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${druid_pool_maxWait}" />
+
+		<property name="validationQuery">
+			<value>SELECT 1</value>
+		</property>		
+		<!-- 缺省多个DruidDataSource的监控数据是各自独立的，在Druid-0.2.17版本之后，支持配置公用监控数据，配置参数为useGloalDataSourceStat -->
+		<!-- <property name="useGlobalDataSourceStat" value="true" /> -->
+		<!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->		
+		<property name="testOnBorrow" value="false" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能  -->		
+		<property name="testOnReturn" value="false" />
+		<!-- 申请连接的时候检测 -->		
+		<property name="testWhileIdle" value="true" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="25200000" />
+		<!-- 每隔1分钟将监控日志输出到日志文件中，单位是毫秒。 -->
+        <property name="timeBetweenLogStatsMillis" value="60000" />
+		<!-- 强制移除长时间不适用的连接-->
+		<property name="removeAbandoned" value="true" />
+		<!-- 1800秒,超过30分钟开始关闭空闲连接-->
+		<property name="removeAbandonedTimeout" value="1800" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />		
+		<property name="proxyFilters">  
+            <list>  
+                <ref bean="stat-filter" />  
+                <ref bean="log-filter" />  
+            </list>   
+        </property>
+
+		<!-- 监控数据库 -->
+		<!-- <property name="filters" value="stat" /> -->
+		<!-- Druid提供了WallFilter，它是基于SQL语义分析来实现防御SQL注入攻击的    -->
+		<!--  -->
+		<property name="filters" value="stat,wall,config" />		
+		<!-- <property name="connectionProperties" value="config.decrypt=true" /> -->
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 引入persist持久化bean的定义 -->
+	<!-- <import resource="module-persist-*.xml"/> -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wang.dao" />
+	</bean>
+	
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">  
+		<property name="mergeSql" value="true" />  
+		<property name="slowSqlMillis" value="10000" />  
+		<property name="logSlowSql" value="true" />  
+	</bean>  
+	
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4j2Filter">
+		<!-- <property name="resultSetLogEnabled" value="false" /> -->
+	</bean>
+	
+	<import resource="classpath:spring/spring-druid-config.xml"/>
+	
+</beans>

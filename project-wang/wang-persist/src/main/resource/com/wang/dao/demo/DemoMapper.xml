@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.demo.DemoMapper">
+	<resultMap id="BaseResultMap" type="com.wang.entity.demo.Demo">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="createTime" jdbcType="DATE" property="createtime" />
+		<result column="deleteFlag" jdbcType="VARCHAR" property="deleteflag"/>
+		<result column="name" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+ <sql id="Base_Column_List" >
+    id, createTime, deleteFlag, name
+  </sql>
+ 
+ 
+  <insert id="insert" parameterType="com.wang.entity.demo.Demo" >
+    insert into demo (id, createTime, deleteFlag, 
+      name)
+    values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{deleteflag,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wang.entity.demo.Demo" >
+    insert into demo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="deleteflag != null" >
+        deleteFlag,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteflag != null" >
+        #{deleteflag,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  	
+	<!-- 自定义SQL -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from demo
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<insert id="insertEntity" parameterType="com.wang.entity.demo.Demo">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into DEMO (ID, DELETEFLAG, NAME, CREATETIME)
+		values (#{id,jdbcType=INTEGER}, #{deleteflag,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 分页条件查询 -->
+    <select id="findDemolistPageByParam" parameterType="com.wang.entity.demo.Demo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from demo where 1=1
+        <if test="deleteflag!=null and deleteflag!=''">
+		and deleteFlag = #{deleteflag,jdbcType=VARCHAR}
+		</if>
+    </select>
+</mapper>

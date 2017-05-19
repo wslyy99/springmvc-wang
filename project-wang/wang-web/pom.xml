@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.wang</groupId>
+    <artifactId>project-wang</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>wang-web</artifactId>
+  <packaging>war</packaging>
+  <name>wang-web Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+    <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		
+		<!-- log4j2 begin-->
+		 <dependency>  
+	              <groupId>org.slf4j</groupId>  
+	              <artifactId>slf4j-api</artifactId>  
+	     </dependency> 
+	    <!-- adapter log4j -->
+		  <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>log4j-over-slf4j</artifactId>
+		  </dependency>
+	    <!-- adapter commons-logging -->
+         <dependency>  
+              <groupId>org.slf4j</groupId>  
+              <artifactId>jcl-over-slf4j</artifactId>
+             <scope>runtime</scope>  
+        </dependency> 
+	         <!-- log4jdbc监控jdbc层 -->
+       <dependency>
+		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+        </dependency>
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		</dependency>
+		
+		<!--用于与slf4j保持桥接-->  
+        <dependency>  
+             <groupId>org.apache.logging.log4j</groupId>  
+             <artifactId>log4j-slf4j-impl</artifactId>
+        </dependency>
+         <!-- 桥接：告诉commons logging使用Log4j2 -->
+	    <!--  <dependency> 
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-jcl</artifactId>
+		</dependency> -->
+        <dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-web</artifactId>
+		</dependency>
+		
+		<!--需要使用log4j2的AsyncLogger需要包含disruptor-->  
+         <dependency>  
+             <groupId>com.lmax</groupId>  
+             <artifactId>disruptor</artifactId>
+         </dependency> 
+          <!-- log4j2 end-->
+          
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope> <!--打包时不包含 -->
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>   <!--这里说明jsp-api.jar文件将由应用服务器提供，打包时不�????????????要包�???????????? -->
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		
+		<!-- <dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+	    </dependency> -->
+	    
+	    <!-- 内部引用 begin -->
+		
+	 <dependency>
+		<groupId>com.wang.common</groupId>
+		<artifactId>wang-common-core</artifactId>
+		<version>${project.version}</version>
+	 </dependency>
+	 <dependency>
+		<groupId>com.wang.common</groupId>
+		<artifactId>wang-common-util</artifactId>
+		<version>${project.version}</version>
+	 </dependency>
+	 
+	 <dependency>
+			<groupId>com.wang</groupId>
+			<artifactId>wang-facade</artifactId>
+			<version>${project.version}</version>
+	 </dependency>
+	 
+	 <dependency>
+			<groupId>com.wang</groupId>
+			<artifactId>wang-service</artifactId>
+			<version>${project.version}</version>
+	 </dependency>
+	 
+	 <dependency>
+		<groupId>com.wang</groupId>
+		<artifactId>wang-domain</artifactId>
+		<version>${project.version}</version>
+	 </dependency>
+	 
+	 <dependency>
+		<groupId>com.wang</groupId>
+		<artifactId>wang-config</artifactId>
+		<version>${project.version}</version>
+	 </dependency>
+	 
+	 <!-- 内部引用 end -->
+	 
+	<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+	</dependency>
+	
+	<!-- swagger begin -->
+	   <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+            </dependency>
+            
+             <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+            </dependency>
+             <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+            </dependency>
+           
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+            </dependency> 
+        <!-- swagger end -->
+	
+  </dependencies>
+  <build>
+    <finalName>wang-web</finalName>
+  </build>
+</project>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.wang.common</groupId>
+  <artifactId>common-wang</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <name>common-wang</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.apache.commons.version>3.5</org.apache.commons.version>
+		<commons-codec>1.9</commons-codec>
+		<javax.servlet.javax.servlet-api>3.0.1</javax.servlet.javax.servlet-api>
+		<com.google.guava.version>19.0</com.google.guava.version>
+		<com.google.collections.version>1.0</com.google.collections.version>
+		<org.mybatis.mybatis>3.3.0</org.mybatis.mybatis>
+		<fast.json>1.2.5</fast.json>
+		<redis.clients.jedis>2.8.1</redis.clients.jedis>
+		<org.apache.logging.log4j2.version>2.5</org.apache.logging.log4j2.version>
+		<mail.version>1.4</mail.version>
+		<springframework.version>4.3.6.RELEASE</springframework.version>
+		<curator.version>2.8.0</curator.version>
+		<dom4j.version>2.0.0</dom4j.version>
+		<commons-io.commons-io>2.4</commons-io.commons-io>
+		<woodstox-core-asl.version>4.4.1</woodstox-core-asl.version>
+		<org.aspectj.aspectjweaver>1.6.2</org.aspectj.aspectjweaver>
+		<thumbnailator.version>0.4.8</thumbnailator.version>
+  </properties>
+  
+  <dependencyManagement>
+		<dependencies>
+            <dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${org.apache.commons.version}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>commons-codec</groupId>
+			    <artifactId>commons-codec</artifactId>
+			    <version>${commons-codec}</version>
+			</dependency>
+		    <dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet.javax.servlet-api}</version>
+				<scope>provided</scope> <!--打包时不包含-->
+			</dependency>
+		    <dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${com.google.guava.version}</version>
+		   </dependency>
+		   <dependency>
+			    <groupId>com.google.collections</groupId>
+			    <artifactId>google-collections</artifactId>
+			    <version>${com.google.collections.version}</version>
+		   </dependency>
+		   <dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${org.mybatis.mybatis}</version>
+			</dependency>
+			
+			<!-- fastjson -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fast.json}</version>
+        </dependency>
+        
+        <!-- redis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${redis.clients.jedis}</version>
+		</dependency>
+		
+		<!-- log4j2 -->
+		<dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-core</artifactId>
+			    <version>${org.apache.logging.log4j2.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-api</artifactId>
+			    <version>${org.apache.logging.log4j2.version}</version>
+			</dependency>
+			
+			<!-- mail -->
+			<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${mail.version}</version>
+		</dependency>
+		
+		<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+    			<groupId>org.springframework</groupId>
+    			<artifactId>spring-webmvc</artifactId>
+    			<version>${springframework.version}</version>
+		   </dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			
+		<!-- 切入点 -->
+		<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${org.aspectj.aspectjweaver}</version>
+			</dependency>
+				
+		<!-- zookeeper客户端curator BEGIN -->
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>${curator.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-examples</artifactId>
+			<version>${curator.version}</version>
+		</dependency>
+		
+			<dependency>
+			  <groupId>org.dom4j</groupId>
+			  <artifactId>dom4j</artifactId>
+			  <version>${dom4j.version}</version>
+		</dependency>
+		<!-- zookeeper客户端curator END -->
+		
+		    <dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.commons-io}</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>org.codehaus.woodstox</groupId>
+			    <artifactId>woodstox-core-asl</artifactId>
+			    <version>${woodstox-core-asl.version}</version>
+			</dependency>
+			
+		    <!-- 图片缩略图 -->
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator.version}</version>
+			</dependency>
+		
+	    </dependencies>
+	</dependencyManagement>
+	
+	 <build/>
+	  <modules>
+	    <module>wang-common-util</module>
+	    <module>wang-common-core</module>
+	 </modules>
+</project>
